@@ -52,9 +52,8 @@ body {
   justify-content: center;
   align-items: center;
   padding: 10px;
-  font-size: 35px;
+  font-size: 25px;
   text-align: center;
-  /* display: none; */
 }
 
 .dica {
@@ -83,7 +82,7 @@ body {
   background-color: #f1b1b155;
 }
 
-.mensagem .reiniciar {
+.mensagem button{
   margin-top: 20px;
   padding: 20px;
   font-size: 25px;
@@ -128,6 +127,17 @@ p {
 
 #inicial {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  display: none;
+  background-color: #f6f5f555;
+  margin: 20px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#cadastro {
+  display: none;
   flex-direction: column;
   justify-content: center;
   display: none;

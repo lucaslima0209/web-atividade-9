@@ -3,6 +3,7 @@ let jogo;
 const elementos = {
   telaInicial: document.getElementById('inicial'),
   telaJogo: document.getElementById('jogo'),
+  telaCadastro: document.getElementById('cadastro'),
   telaMensagem: document.querySelector('.mensagem'),
   textoMensagem: document.querySelector('.mensagem .texto'),
   teclado: document.querySelector('.teclado'),
@@ -13,6 +14,7 @@ const elementos = {
     medio: document.querySelector('.botao-medio'),
     dificil: document.querySelector('.botao-dificil'),
     reiniciar: document.querySelector('.reiniciar'),
+    cadastrar: document.querySelector('.cadastrar'),
   },
   boneco: [
     document.querySelector('.boneco-cabeca'),
@@ -58,6 +60,12 @@ const palavras = {
   {valor: 'ratificar', dica: 'validar um ato ou compromisso.'},
   {valor: 'propósito', dica: 'aquilo que se busca realizar, alcançar.'},],
 };
+
+const cadastrarPalavra = () => {
+  elementos.telaInicial.style.display = 'none';
+  elementos.telaCadastro.style.display = 'flex';
+
+}
 
 const novoJogo = () => {
   jogo = {
@@ -106,12 +114,17 @@ const novoJogo = () => {
     },
   };
 
+  
+  elementos.botoes.reiniciar.style.display = 'none';
+  elementos.botoes.cadastrar.style.display = 'flex';
+
   elementos.dica.style.display = 'none';
   elementos.telaInicial.style.display = 'flex';
   elementos.telaJogo.style.display = 'none';
-  elementos.telaMensagem.style.display = 'none';
+  elementos.telaMensagem.style.display = 'flex';
   elementos.telaMensagem.classList.remove('mensagem-vitoria');
   elementos.telaMensagem.classList.remove('mensagem-derrota');
+  elementos.textoMensagem.textContent = 'CADASTRAR PALAVRA';
   for (const parte of elementos.boneco) {
     parte.classList.remove('escondido');
     parte.classList.add('escondido');
@@ -159,7 +172,9 @@ const mostrarErro = () => {
 const mostrarMensagem = vitoria => {
   const mensagem = vitoria ? '<p>Parabéns!</p><p>Você GANHOU!</p>' : '<p>Que pena!</p><p>Você PERDEU!</p>';
   elementos.textoMensagem.innerHTML = mensagem;
-  elementos.telaMensagem.style.display = 'flex';
+  elementos.telaMensagem.style.display = 'flex';  
+  elementos.botoes.reiniciar.style.display = 'flex';
+  elementos.botoes.cadastrar.style.display = 'none';
   elementos.telaMensagem.classList.add(`mensagem-${vitoria ? 'vitoria' : 'derrota'}`);
 };
 
@@ -188,6 +203,7 @@ const iniciarJogo = dificuldade => {
   elementos.telaInicial.style.display = 'none';
   elementos.telaJogo.style.display = 'flex';
   elementos.dica.style.display = 'flex';
+  elementos.telaMensagem.style.display = 'none';
 
   sortearPalavra();
   mostrarPalavra();
@@ -200,6 +216,7 @@ elementos.botoes.facil.addEventListener('click', () => iniciarJogo('facil'));
 elementos.botoes.medio.addEventListener('click', () => iniciarJogo('medio'));
 elementos.botoes.dificil.addEventListener('click', () => iniciarJogo('dificil'));
 
+elementos.botoes.cadastrar.addEventListener('click', () => cadastrarPalavra());
 elementos.botoes.reiniciar.addEventListener('click', () => novoJogo());
 
 novoJogo();
