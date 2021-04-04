@@ -57,6 +57,24 @@ body {
   /* display: none; */
 }
 
+.dica {
+  flex: 1;
+  background-color: #f6f5f555;
+  margin: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  font-size: 25px;
+  text-align: center;
+  max-height: 75px;
+  /* display: none; */
+}
+
+
 .mensagem-vitoria {
   background-color: #b1f1c155;
 }
