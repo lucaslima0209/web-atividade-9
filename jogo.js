@@ -7,6 +7,7 @@ const elementos = {
   textoMensagem: document.querySelector('.mensagem .texto'),
   teclado: document.querySelector('.teclado'),
   palavra: document.querySelector('.palavra'),
+  dica: document.getElementById('dica'),
   botoes: {
     facil: document.querySelector('.botao-facil'),
     medio: document.querySelector('.botao-medio'),
@@ -24,9 +25,38 @@ const elementos = {
 };
 
 const palavras = {
-  facil: ['anciã', 'série', 'avaro', 'maior', 'noite', 'ímpar', 'salvo', 'vetor', 'prado', 'pecha'],
-  medio: ['cônjuge', 'exceção', 'efêmero', 'prolixo', 'idílico', 'análogo', 'caráter', 'genuíno', 'estória', 'sublime'],
-  dificil: ['concepção', 'plenitude', 'essencial', 'hipócrita', 'corolário', 'paradigma', 'dicotomia', 'hegemonia', 'ratificar', 'propósito'],
+  facil: [{valor: 'anciã', dica: 'mulher de idade avançada, respeitável.'}, 
+  {valor: 'série', dica: 'classe, categoria.'}, 
+  {valor: 'morte', dica: 'fim da vida.'}, 
+  {valor: 'maior', dica: 'que supera outro em quantidade, grandeza.'},
+  {valor: 'noite', dica: 'horário em que está escuro.'},
+  {valor: 'ímpar', dica: 'número não divisível por 2.'},
+  {valor: 'salvo', dica: 'algo preservado, intacto.'},
+  {valor: 'vetor', dica: 'na informática, estrutura que armazena um conjunto de dados.'},
+  {valor: 'pizza', dica: 'alimento de forma redonda de origem italiana.'},
+  {valor: 'sagaz', dica: 'pessoa que não se deixa ser enganada'},],
+
+  medio: [{valor: 'cônjuge', dica: 'pessoa com quem se tem uma relação semelhante ao casamento.'},
+  {valor: 'exceção', dica: 'ruptura de regra ou norma.'},
+  {valor: 'efêmero', dica: 'que tem curta duração, temporário.'},
+  {valor: 'prolixo', dica: 'que usa palavras em excesso.'},
+  {valor: 'idílico', dica: 'que resulta de um sonho, de um devaneio, de uma utopia.'},
+  {valor: 'análogo', dica: 'que é semelhante, idêntico a outra coisa ou pessoa.'},
+  {valor: 'caráter', dica: 'formação moral, índole.'},
+  {valor: 'genuíno', dica: 'algo verdadeiro, puro, correto.'},
+  {valor: 'estória', dica: 'texto popular, narrativa infantil.'},
+  {valor: 'sublime', dica: 'que transcende o humano, não é ordinário, comum.'},],
+
+  dificil: [{valor: 'concepção', dica: 'conhecimento sobre algo, ideia.'},
+  {valor: 'plenitude', dica: 'condição daquilo que está completo, inteiro, sem espaço.'},
+  {valor: 'essencial', dica: 'algo muito necessário, fundamental.'},
+  {valor: 'hipócrita', dica: 'pessoa que finge sentir o que não sente, falso.'},
+  {valor: 'perspicaz', dica: 'que possui inteligência e sagacidade.'},
+  {valor: 'paradigma', dica: 'padrão já estabelecido, norma.'},
+  {valor: 'dicotomia', dica: 'oposição entre duas coisas, ex.: o bem e o mal.'},
+  {valor: 'hegemonia', dica: 'influência absoluta, liderança ou superioridade.'},
+  {valor: 'ratificar', dica: 'validar um ato ou compromisso.'},
+  {valor: 'propósito', dica: 'aquilo que se busca realizar, alcançar.'},],
 };
 
 const novoJogo = () => {
@@ -40,7 +70,9 @@ const novoJogo = () => {
     acertos: undefined,
     jogadas: [],
     chances: 6,
-    definirPalavra: function (palavra) {
+
+    definirPalavra: function (palavra, dica) {
+      elementos.dica.textContent = `Dica: ${dica}`
       this.palavra.original = palavra;
       this.palavra.tamanho = palavra.length;
       this.acertos = '';
@@ -74,6 +106,7 @@ const novoJogo = () => {
     },
   };
 
+  elementos.dica.style.display = 'none';
   elementos.telaInicial.style.display = 'flex';
   elementos.telaJogo.style.display = 'none';
   elementos.telaMensagem.style.display = 'none';
@@ -132,10 +165,12 @@ const mostrarMensagem = vitoria => {
 
 const sortearPalavra = () => {
   const i = Math.floor(Math.random() * palavras[jogo.dificuldade].length);
-  const palavra = palavras[jogo.dificuldade][i];
-  jogo.definirPalavra(palavra);
+  const palavra = palavras[jogo.dificuldade][i].valor;
+  const dica = palavras[jogo.dificuldade][i].dica;
+  jogo.definirPalavra(palavra, dica);
 
   console.log(jogo.palavra.original);
+ 
 
   return jogo.palavra.original;
 };
@@ -152,9 +187,11 @@ const iniciarJogo = dificuldade => {
   jogo.dificuldade = dificuldade;
   elementos.telaInicial.style.display = 'none';
   elementos.telaJogo.style.display = 'flex';
+  elementos.dica.style.display = 'flex';
 
   sortearPalavra();
   mostrarPalavra();
+
 };
 
 const replace = (str, i, newChar) => str.substring(0, i) + newChar + str.substring(i + 1);
