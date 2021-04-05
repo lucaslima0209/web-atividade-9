@@ -42,7 +42,7 @@
       </div>
       <div class="mensagem">
         <div class="texto"><p>CADASTRAR PALAVRA</p></div>
-        <button class="reiniciar">Reiniciar</button>
+        <button class="menu">Menu</button>
         <button class="cadastrar">Cadastrar</button>
       </div>
     </div>
@@ -60,7 +60,36 @@
         </div>
         <div id="cadastro">
           <h2>Cadastro</h2>
-         
+          <div class="conteudo-cadastro">
+            <form class="form">
+              <p class="p-cadastro">
+                <label for="Dificuldade">Dificuldade</label>
+              </p>
+              <p class="p-cadastro">
+                <select name="dificuldade" id="nova-dificuldade">
+                  <option value="vazio"></option>
+                  <option value="facil">Fácil (5 letras)</option>
+                  <option value="medio">Médio (7 letras)</option>
+                  <option value="dificil">Difícil (9 letras)</option>
+                </select>
+              </p>
+              <p class="p-cadastro">
+                <label for="nome">Palavra:</label>
+              </p>
+              <p class="p-cadastro">
+                <input type="text" name="nova-palavra" id="nova-palavra">
+              </p>
+              <p class="p-cadastro">
+                <label for="dica">Dica:</label>
+              </p>
+              <p class="p-cadastro">
+                <input type="text" name="ova-ndica" id="nova-dica">
+              </p>
+            </form>
+            <p>
+              <button class="botao-cadastro">Enviar</button>
+            </p>
+          </div>
         </div>
         <div id="jogo">
           <div class="respsota">

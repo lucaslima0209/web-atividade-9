@@ -139,7 +139,8 @@ p {
 #cadastro {
   display: none;
   flex-direction: column;
-  justify-content: center;
+  justify-content:  top;
+  align-items: center;
   display: none;
   background-color: #f6f5f555;
   margin: 20px;
@@ -204,6 +205,7 @@ button:hover {
   justify-content: center;
   align-items: center;
   padding: 10px;
+  size: 100px;
 }
 
 .teclado {
@@ -242,4 +244,34 @@ button:hover {
 
 .escondido {
   display: none;
+}
+
+.conteudo-cadastro form{
+  align-items: center;
+  justify-content: center;
+}
+
+.conteudo-cadastro select, input, .botao-cadastro {
+  border-radius: 50px;
+  margin-bottom: 25px;
+  margin-top: 5px;
+  width: 600px;
+  height: 50px;
+  text-align: left;
+  padding: 3px;
+  font-size: 25px;
+}
+
+.conteudo-cadastro .botao-cadastro {
+  width: 250px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.conteudo-cadastro select {
+  font-size: 25px;
+}
+
+.p-cadastro{
+  font-size: 40px;
 }
